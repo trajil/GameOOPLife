@@ -7,7 +7,10 @@ public class FormFileReader
     public int FormWidth;
     char alive = 'X';
     char dead = 'O';
-    string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
+
+    private string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
+    private string formNameExtension = ".txt";
+
 
     public FormFileReader(string name)
     {

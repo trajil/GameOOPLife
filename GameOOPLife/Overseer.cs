@@ -7,17 +7,16 @@ public class Overseer
     public int SurvivalPercantage = 20;
 
 
-    public Overseer(int rowlength, int generationSize)
+    public Overseer(int rowLength, int colLength)
     {
-        this.Rowlength = rowlength;
-        this.GenerationSize = generationSize;
+        this.Rowlength = rowLength;
+        this.GenerationSize = rowLength * colLength;
         CurrentGeneration = InitializeGeneration();
 
     }
 
-    public void SpawnFormsOnSpecificPlace(Generation generation, string folderPathToForms)
+    public void SpawnFormsOnSpecificPlace(Generation generation)
     {
-        string formNameExtension = ".txt";
         List<(string, int)> forms = new List<(string, int)>();
         GenerationWrapper wrapper = new GenerationWrapper(generation, Rowlength);
 
@@ -31,11 +30,11 @@ public class Overseer
 
         foreach (var item in forms)
         {
-            SpawnFormOnSpecificPlace(generation, folderPathToForms + item.Item1 + formNameExtension, item.Item2);
+            SpawnFormOnSpecificPlace( item.Item1, generation, item.Item2);
         }
     }
 
-    public void SpawnFormOnSpecificPlace(Generation generation, string name, int upperLeftCornerSpawnIndex = 0)
+    public void SpawnFormOnSpecificPlace(string name, Generation generation, int upperLeftCornerSpawnIndex = 0)
     {
 
         ExternalForm form = new ExternalForm(name);
