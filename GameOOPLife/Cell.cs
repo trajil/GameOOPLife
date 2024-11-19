@@ -23,6 +23,6 @@ public class Cell
     }
     public override string ToString()
     {
-        return Status? "█" : " ";
+        return Status? "#" : " ";
     }
 }
