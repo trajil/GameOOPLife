@@ -3,16 +3,14 @@ public class Overseer
 {
     public Generation CurrentGeneration { get; set; }
 
-    public bool DoBordersExist = false;
     public int Rowlength = 161;
     public int GenerationSize = 161 * 49;
     public int SurvivalPercantage = 20;
 
 
     // spawn first generation with random cells
-    public Overseer(bool doBordersExist, int rowlength, int generationSize, int survivalPercantage)
+    public Overseer(int rowlength, int generationSize, int survivalPercantage)
     {
-        this.DoBordersExist = doBordersExist;
         this.Rowlength = rowlength;
         this.GenerationSize = generationSize;
         this.SurvivalPercantage = survivalPercantage;
@@ -22,9 +20,8 @@ public class Overseer
     }
 
     // spawn first generation with custom cell forms
-    public Overseer(bool doBordersExist, int rowlength, int generationSize, string folderPathToForms)
+    public Overseer(int rowlength, int generationSize, string folderPathToForms)
     {
-        this.DoBordersExist = doBordersExist;
         this.Rowlength = rowlength;
         this.GenerationSize = generationSize;
         CurrentGeneration = InitializeGeneration();

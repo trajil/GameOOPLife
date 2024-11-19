@@ -3,9 +3,9 @@
 public class GenerationWrapper
 {
     Generation Generation;
+    public static bool DoBordersExist;
     public int RowLength;
     public int ColLength;
-    private bool DoBordersExist;
 
     public GenerationWrapper(Generation generation, int rowlength)
     {

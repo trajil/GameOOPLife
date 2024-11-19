@@ -47,10 +47,4 @@ public class ExternalForm
         }
         return result;
     }
-
-    public void ReadOutFileContent()
-    {
-        Console.WriteLine(FileContent);
-    }
-
 }

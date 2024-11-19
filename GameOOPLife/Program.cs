@@ -5,11 +5,11 @@ int generationCounter = 0;
 string spawnMode = "custom"; // options: "custom", "random"
 
 // game speed
-double fps = 15;
+double fps = 60;
 double sleepTimer = 1000 / fps;
 
 // configuration for the map
-bool doBordersExist = false;
+GenerationWrapper.DoBordersExist = false;
 int rowLength = 160;
 int colLength = 40;
 int generationSize = rowLength * colLength;
@@ -21,8 +21,8 @@ int survivalPercantage = 12;
 string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
 
 Overseer omni = spawnMode == "custom"
-    ? new Overseer(doBordersExist, rowLength, generationSize, folderPathToForms)
-    : new Overseer(doBordersExist, rowLength, generationSize, survivalPercantage);
+    ? new Overseer(rowLength, generationSize, folderPathToForms)
+    : new Overseer(rowLength, generationSize, survivalPercantage);
 
 
 
