@@ -5,11 +5,15 @@ public class FormFileReader
     public string FileContent;
     public List<char> Form;
     public int FormWidth;
-    public FormFileReader(string name, char alive, char dead)
+    char alive = 'X';
+    char dead = 'O';
+    string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
+
+    public FormFileReader(string name)
     {
         this.FileContent = File.ReadAllText(name);
         this.Form = GetForm(alive, dead);
-        this.FormWidth = GetFormWidth();
+        this.FormWidth = GetFormWidth(); 
     }
 
     public int GetFormWidth()

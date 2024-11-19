@@ -2,7 +2,6 @@
 
 int generationCounter = 0;
 
-string spawnMode = "custom"; // options: "custom", "random"
 
 // game speed
 double fps = 60;
@@ -20,10 +19,10 @@ int survivalPercantage = 12;
 // configuration for custom spawn
 string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
 
-Overseer omni = spawnMode == "custom"
-    ? new Overseer(rowLength, generationSize, folderPathToForms)
-    : new Overseer(rowLength, generationSize, survivalPercantage);
+Overseer omni = new Overseer(rowLength, generationSize);
 
+omni.ReviveSomeRandomCells(survivalPercantage);
+// spawn Forms
 
 
 while (true)

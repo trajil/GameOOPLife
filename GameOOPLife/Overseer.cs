@@ -2,32 +2,19 @@
 public class Overseer
 {
     public Generation CurrentGeneration { get; set; }
-
     public int Rowlength = 161;
     public int GenerationSize = 161 * 49;
     public int SurvivalPercantage = 20;
 
 
-    // spawn first generation with random cells
-    public Overseer(int rowlength, int generationSize, int survivalPercantage)
-    {
-        this.Rowlength = rowlength;
-        this.GenerationSize = generationSize;
-        this.SurvivalPercantage = survivalPercantage;
-        CurrentGeneration = InitializeGeneration();
-
-        ReviveSomeRandomCells(SurvivalPercantage);
-    }
-
-    // spawn first generation with custom cell forms
-    public Overseer(int rowlength, int generationSize, string folderPathToForms)
+    public Overseer(int rowlength, int generationSize)
     {
         this.Rowlength = rowlength;
         this.GenerationSize = generationSize;
         CurrentGeneration = InitializeGeneration();
 
-        SpawnFormsOnSpecificPlace(CurrentGeneration, folderPathToForms);
     }
+
     public void SpawnFormsOnSpecificPlace(Generation generation, string folderPathToForms)
     {
         string formNameExtension = ".txt";
@@ -50,9 +37,8 @@ public class Overseer
 
     public void SpawnFormOnSpecificPlace(Generation generation, string name, int upperLeftCornerSpawnIndex = 0)
     {
-        char alive = 'X';
-        char dead = 'O';
-        ExternalForm form = new ExternalForm(name, alive, dead);
+
+        ExternalForm form = new ExternalForm(name);
         List<char> input = form.Form;
         int formWidth = form.FormWidth;
         int formSize = input.Count;
@@ -66,11 +52,11 @@ public class Overseer
         {
             for (int x = upperLeftCoordinate.Item1; x < formWidth + upperLeftCoordinate.Item1; x++)
             {
-                if (input[indexInForm] == alive)
+                if (input[indexInForm] == 'X')
                 {
                     generation.Cells[wrapper.GetIndex(x, y)].Revive();
                 }
-                else if (input[indexInForm] == dead)
+                else if (input[indexInForm] == 'O')
                 {
                     generation.Cells[wrapper.GetIndex(x, y)].Kill();
                 }
@@ -116,7 +102,7 @@ public class Overseer
 
     public bool DecideCellFate(int index)
     {
-        Cell currentCell = GetCellByIndex(CurrentGeneration, index);
+        Cell currentCell = GetCellByIndex(index, CurrentGeneration);
 
         int countLivingNeighbours = currentCell.Neighbours.Where(cell => cell.Status).Count();
 
@@ -171,7 +157,7 @@ public class Overseer
             ReviveCell(index);
         }
     }
-    private Cell GetCellByIndex(Generation generation, int index)
+    private Cell GetCellByIndex(int index, Generation generation)
     {
         return generation.Cells[index];
     }
@@ -182,7 +168,7 @@ public class Overseer
 
     public void MakeCellAcquinted(Generation generation, int index)
     {
-        Cell cell = GetCellByIndex(generation, index);
+        Cell cell = GetCellByIndex(index, generation);
         GenerationWrapper wrapper = new GenerationWrapper(generation, Rowlength);
         (int, int) coordinate = wrapper.GetCoordinate(index);
 

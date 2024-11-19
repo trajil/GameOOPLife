@@ -5,7 +5,9 @@ public class ExternalForm
     public string FileContent;
     public List<char> Form;
     public int FormWidth;
-    public ExternalForm(string name, char alive, char dead)
+    char alive = 'X';
+    char dead = 'O';
+    public ExternalForm(string name)
     {
         this.FileContent = File.ReadAllText(name);
         this.Form = GetForm(alive, dead);
