@@ -1,8 +1,7 @@
 ﻿using GameOOPLife;
 
 Overseer omni = new Overseer(Settings.RowLength, Settings.ColLength);
-
-omni.ReviveSomeRandomCells(Settings.SurvivalPercantage);
+GameMode.RunMode(omni,"custom");
 
 int generationCounter = 0;
 while (true)

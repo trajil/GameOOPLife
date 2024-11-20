@@ -18,13 +18,7 @@ public class Overseer
         List<(string, int)> forms = new List<(string, int)>();
         GenerationWrapper wrapper = new GenerationWrapper(generation, RowLength);
 
-        //forms.Add(("simpleCell", wrapper.GetIndex(0,0)));
-        //forms.Add(("glider", wrapper.GetIndex(90, 3)));
-        //forms.Add(("octagon", wrapper.GetIndex(70, 5)));
-        forms.Add(("pulsator", wrapper.GetIndex(70, 5)));
-        //forms.Add(("tuemmler", wrapper.GetIndex(70, 25)));
-        forms.Add(("gosper_glider_gun", wrapper.GetIndex(0, 0)));
-        //forms.Add(("glider", wrapper.GetIndex(0, 0)));
+        forms.Add(("glider", wrapper.GetIndex(90, 3)));
 
         foreach (var item in forms)
         {
@@ -120,13 +114,13 @@ public class Overseer
             generation.AppendNewCell();
         }
     }
-    public void ReviveSomeRandomCells(int survivalPercentage)
+    public void ReviveSomeRandomCells()
     {
         Random random = new Random();
 
         for (int index = 0; index < GenerationSize; index++)
         {
-            if (random.Next(100) <= survivalPercentage)
+            if (random.Next(100) <= Settings.SurvivalPercentage)
             {
                 GetCellByIndex(index).Revive();
 

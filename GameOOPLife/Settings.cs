@@ -2,7 +2,7 @@
 
 public static class Settings
 {
-    public static int SurvivalPercantage = 12;
+    public static int SurvivalPercentage = 12;
 
     public static int RowLength = 160;
     public static int ColLength = 40;
