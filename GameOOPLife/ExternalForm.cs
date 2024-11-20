@@ -2,18 +2,22 @@
 
 public class ExternalForm
 {
-    public List<char> Form;
-    public string Name;
+    private string Name;
+
+    public List<char> Form {  get; set; }
     public int FormWidth;
     public ExternalForm(string name)
     {
-        List<char> form = new List<char>();
+        this.Name = name;
+        CreateForm();
     }
 
-    public List<char> ReadFormFromFileReader(string formName)
-    { 
-        FormFileReader fr = new FormFileReader(formName);
+    public void CreateForm()
+    {
+        FormFileReader fr = new FormFileReader(Name);
 
-        return Form;
+        this.Form = fr.ExtractFormFromFileContent();
+        this.FormWidth = fr.ExtractFormWidthFromFileContent();
     }
+   
 }

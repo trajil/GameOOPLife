@@ -4,7 +4,7 @@ public class FormFileReader
 {
     public string FileContent;
     public int FormWidth;
-    
+
     private string FolderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
     private string FormNameExtension = ".txt";
 
@@ -13,10 +13,28 @@ public class FormFileReader
     {
         var fullFileNameWithFolderPath = FolderPathToForms + fileName + FormNameExtension;
         this.FileContent = File.ReadAllText(fullFileNameWithFolderPath);
-        this.FormWidth = GetFormWidth(); 
+        this.FormWidth = ExtractFormWidthFromFileContent();
     }
 
-    public int GetFormWidth()
+    public List<char> ExtractFormFromFileContent()
+    {
+        char alive = 'X';
+        char dead = 'O';
+        List<char> result = [];
+        foreach (var element in FileContent)
+        {
+            if (element == alive)
+            {
+                result.Add(element);
+            }
+            else if (element == dead)
+            {
+                result.Add(element);
+            }
+        }
+        return result;
+    }
+    public int ExtractFormWidthFromFileContent()
     {
         string number = "";
 
@@ -35,22 +53,4 @@ public class FormFileReader
         return !string.IsNullOrEmpty(number) ? int.Parse(number) : 0;
     }
 
-    public List<char> GetForm()
-    {
-        char alive = 'X';
-        char dead = 'O';
-        List<char> result = [];
-        foreach (var element in FileContent)
-        {
-            if (element == alive)
-            {
-                result.Add(element);
-            }
-            else if (element == dead)
-            {
-                result.Add(element);
-            }
-        }
-        return result;
-    }
 }
