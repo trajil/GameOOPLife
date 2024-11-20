@@ -37,7 +37,7 @@ public class Overseer
 
         ExternalForm form = new ExternalForm(name);
         List<char> input = form.Form;
-        int formWidth = form.FormWidth;
+        int formWidth = form.GetFormWidth();
         int formSize = input.Count;
         int formHeight = formSize / formWidth;
 

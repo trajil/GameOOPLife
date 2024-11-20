@@ -3,7 +3,7 @@
 public class GenerationWrapper
 {
     Generation Generation;
-    public static bool DoBordersExist;
+    public bool DoBordersExist;
     public int RowLength;
     public int ColLength;
 
@@ -12,7 +12,9 @@ public class GenerationWrapper
         this.Generation = generation;
         this.RowLength = rowlength;
         this.ColLength = Generation.Size / rowlength;
+        this.DoBordersExist = Settings.DoBordersExist;
     }
+
     public Cell? GetCellAt(int x, int y)
     {
         if (DoBordersExist)
@@ -44,6 +46,7 @@ public class GenerationWrapper
 
         return Generation.Cells[y * RowLength + x];
     }
+
     public (int, int) GetCoordinate(int index)
     {
         int x = index % RowLength;
@@ -54,10 +57,5 @@ public class GenerationWrapper
     public int GetIndex(int x, int y)
     {
         return (y * RowLength + x);
-    }
-
-    public void DisableBorders()
-    {
-        DoBordersExist = false;
     }
 }

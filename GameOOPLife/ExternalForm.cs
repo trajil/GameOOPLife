@@ -4,8 +4,8 @@ public class ExternalForm
 {
     private string Name;
 
-    public List<char> Form {  get; set; }
-    public int FormWidth;
+    public List<char> Form { get; set; }
+    private int FormWidth;
     public ExternalForm(string name)
     {
         this.Name = name;
@@ -19,5 +19,9 @@ public class ExternalForm
         this.Form = fr.ExtractFormFromFileContent();
         this.FormWidth = fr.ExtractFormWidthFromFileContent();
     }
-   
+
+    public int GetFormWidth()
+    {
+        return this.FormWidth;
+    }
 }
