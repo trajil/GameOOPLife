@@ -3,19 +3,16 @@
 public class FormFileReader
 {
     public string FileContent;
-    public List<char> Form;
     public int FormWidth;
-    char alive = 'X';
-    char dead = 'O';
-
-    private string folderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
-    private string formNameExtension = ".txt";
+    
+    private string FolderPathToForms = "C:\\Users\\yevgen.gugel\\source\\repos\\GameOOPLife\\GameOOPLife\\externalForms\\";
+    private string FormNameExtension = ".txt";
 
 
-    public FormFileReader(string name)
+    public FormFileReader(string fileName)
     {
-        this.FileContent = File.ReadAllText(name);
-        this.Form = GetForm(alive, dead);
+        var fullFileNameWithFolderPath = FolderPathToForms + fileName + FormNameExtension;
+        this.FileContent = File.ReadAllText(fullFileNameWithFolderPath);
         this.FormWidth = GetFormWidth(); 
     }
 
@@ -38,8 +35,10 @@ public class FormFileReader
         return !string.IsNullOrEmpty(number) ? int.Parse(number) : 0;
     }
 
-    public List<char> GetForm(char alive, char dead)
+    public List<char> GetForm()
     {
+        char alive = 'X';
+        char dead = 'O';
         List<char> result = [];
         foreach (var element in FileContent)
         {

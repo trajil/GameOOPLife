@@ -2,23 +2,21 @@
 public class Overseer
 {
     public Generation CurrentGeneration { get; set; }
-    public int Rowlength = 161;
+    public int RowLength = 161;
     public int GenerationSize = 161 * 49;
     public int SurvivalPercantage = 20;
 
 
     public Overseer(int rowLength, int colLength)
     {
-        this.Rowlength = rowLength;
+        this.RowLength = rowLength;
         this.GenerationSize = rowLength * colLength;
         CurrentGeneration = InitializeGeneration();
-
     }
-
     public void SpawnFormsOnSpecificPlace(Generation generation)
     {
         List<(string, int)> forms = new List<(string, int)>();
-        GenerationWrapper wrapper = new GenerationWrapper(generation, Rowlength);
+        GenerationWrapper wrapper = new GenerationWrapper(generation, RowLength);
 
         //forms.Add(("simpleCell", wrapper.GetIndex(0,0)));
         //forms.Add(("glider", wrapper.GetIndex(90, 3)));
@@ -30,7 +28,7 @@ public class Overseer
 
         foreach (var item in forms)
         {
-            SpawnFormOnSpecificPlace( item.Item1, generation, item.Item2);
+            SpawnFormOnSpecificPlace(item.Item1, generation, item.Item2);
         }
     }
 
@@ -43,7 +41,7 @@ public class Overseer
         int formSize = input.Count;
         int formHeight = formSize / formWidth;
 
-        GenerationWrapper wrapper = new GenerationWrapper(generation, Rowlength);
+        GenerationWrapper wrapper = new GenerationWrapper(generation, RowLength);
         (int, int) upperLeftCoordinate = wrapper.GetCoordinate(upperLeftCornerSpawnIndex);
 
         int indexInForm = 0;
@@ -168,7 +166,7 @@ public class Overseer
     public void MakeCellAcquinted(Generation generation, int index)
     {
         Cell cell = GetCellByIndex(index, generation);
-        GenerationWrapper wrapper = new GenerationWrapper(generation, Rowlength);
+        GenerationWrapper wrapper = new GenerationWrapper(generation, RowLength);
         (int, int) coordinate = wrapper.GetCoordinate(index);
 
         for (int y = coordinate.Item2 - 1; y <= coordinate.Item2 + 1; y++)

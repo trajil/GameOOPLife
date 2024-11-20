@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using GameOOPLife;
+﻿using GameOOPLife;
 
 int generationCounter = 0;
 
@@ -43,7 +42,7 @@ omni.ReviveSomeRandomCells(survivalPercantage);
 
 while (true)
 {
-    var gen2d = new GenerationWrapper(omni.CurrentGeneration, omni.Rowlength);
+    var gen2d = new GenerationWrapper(omni.CurrentGeneration, omni.RowLength);
     Screen.Show(gen2d, generationCounter);
     Thread.Sleep((int)sleepTimer);
     omni.ForwardCurrentGeneration();
